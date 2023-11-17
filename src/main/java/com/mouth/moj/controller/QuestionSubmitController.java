@@ -1,0 +1,54 @@
+package com.mouth.moj.controller;
+
+import com.mouth.moj.common.BaseResponse;
+import com.mouth.moj.common.ErrorCode;
+import com.mouth.moj.common.ResultUtils;
+import com.mouth.moj.exception.BusinessException;
+import com.mouth.moj.model.dto.questionsubmit.QuestionSubmitRequest;
+import com.mouth.moj.model.entity.User;
+import com.mouth.moj.service.QuestionSubmitService;
+import com.mouth.moj.service.UserService;
+import lombok.extern.slf4j.Slf4j;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+
+import javax.annotation.Resource;
+import javax.servlet.http.HttpServletRequest;
+
+/**
+ * 题目提交接口
+ *
+ * @author Mouth
+ */
+@RestController
+@RequestMapping("/question_submit")
+@Slf4j
+public class QuestionSubmitController {
+
+    @Resource
+    private QuestionSubmitService questionSubmitService;
+
+    @Resource
+    private UserService userService;
+
+    /**
+     * 提交题目
+     * @param questionSubmitRequest
+     * @param request
+     * @return 提交记录的id
+     */
+    @PostMapping("/")
+    public BaseResponse<Long> doQuestionSubmit(@RequestBody QuestionSubmitRequest questionSubmitRequest,
+            HttpServletRequest request) {
+        if (questionSubmitRequest == null || questionSubmitRequest.getQuestionId() <= 0) {
+            throw new BusinessException(ErrorCode.PARAMS_ERROR);
+        }
+        // 登录才能提交题目
+        final User loginUser = userService.getLoginUser(request);
+        Long questionSubmitId = questionSubmitService.doQuestionSubmit(questionSubmitRequest, loginUser);
+        return ResultUtils.success(questionSubmitId);
+    }
+
+}

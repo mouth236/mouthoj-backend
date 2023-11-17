@@ -1,0 +1,51 @@
+package com.mouth.moj.service;
+
+import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
+import com.mouth.moj.model.dto.question.QuestionQueryRequest;
+import com.mouth.moj.model.entity.Question;
+import com.baomidou.mybatisplus.extension.service.IService;
+import com.mouth.moj.model.vo.QuestionVO;
+
+import javax.servlet.http.HttpServletRequest;
+
+/**
+* @author Lenovo
+* @description 针对表【quetion(题目表)】的数据库操作Service
+* @createDate 2023-11-17 22:03:55
+*/
+public interface QuestionService extends IService<Question> {
+    /**
+     * 校验
+     *
+     * @param question
+     * @param add
+     */
+    void validQuestion(Question question, boolean add);
+
+    /**
+     * 获取查询条件
+     *
+     * @param questionQueryRequest
+     * @return
+     */
+    QueryWrapper<Question> getQueryWrapper(QuestionQueryRequest questionQueryRequest);
+
+    /**
+     * 获取帖子封装
+     *
+     * @param question
+     * @param request
+     * @return
+     */
+    QuestionVO getQuestionVO(Question question, HttpServletRequest request);
+
+    /**
+     * 分页获取帖子封装
+     *
+     * @param questionPage
+     * @param request
+     * @return
+     */
+    Page<QuestionVO> getQuestionVOPage(Page<Question> questionPage, HttpServletRequest request);
+}
