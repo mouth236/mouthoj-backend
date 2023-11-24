@@ -3,9 +3,8 @@ package com.mouth.moj.judge.strategy;
 import cn.hutool.json.JSONUtil;
 import com.mouth.moj.model.dto.question.JudgeCase;
 import com.mouth.moj.model.dto.question.JudgeConfig;
-import com.mouth.moj.model.dto.questionsubmit.JudgeInfo;
+import com.mouth.moj.judge.codesandbox.model.JudgeInfo;
 import com.mouth.moj.model.entity.Question;
-import com.mouth.moj.model.entity.QuestionSubmit;
 import com.mouth.moj.model.enums.JudgeInfoMessageEnum;
 
 import java.util.List;

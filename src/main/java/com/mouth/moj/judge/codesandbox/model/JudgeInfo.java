@@ -1,4 +1,4 @@
-package com.mouth.moj.model.dto.questionsubmit;
+package com.mouth.moj.judge.codesandbox.model;
 
 import lombok.Data;
 

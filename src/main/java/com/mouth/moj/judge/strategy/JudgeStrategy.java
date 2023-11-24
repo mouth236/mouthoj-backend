@@ -1,6 +1,6 @@
 package com.mouth.moj.judge.strategy;
 
-import com.mouth.moj.model.dto.questionsubmit.JudgeInfo;
+import com.mouth.moj.judge.codesandbox.model.JudgeInfo;
 
 /**
  * @ClassName JudgeStrategy

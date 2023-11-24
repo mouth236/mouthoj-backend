@@ -2,7 +2,7 @@ package com.mouth.moj.model.vo;
 
 import cn.hutool.json.JSONUtil;
 import com.google.gson.Gson;
-import com.mouth.moj.model.dto.questionsubmit.JudgeInfo;
+import com.mouth.moj.judge.codesandbox.model.JudgeInfo;
 import com.mouth.moj.model.entity.QuestionSubmit;
 import lombok.Data;
 import org.springframework.beans.BeanUtils;

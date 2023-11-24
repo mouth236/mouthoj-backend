@@ -1,7 +1,7 @@
 package com.mouth.moj.judge.strategy;
 
 import com.mouth.moj.model.dto.question.JudgeCase;
-import com.mouth.moj.model.dto.questionsubmit.JudgeInfo;
+import com.mouth.moj.judge.codesandbox.model.JudgeInfo;
 import com.mouth.moj.model.entity.Question;
 import com.mouth.moj.model.entity.QuestionSubmit;
 import lombok.Data;

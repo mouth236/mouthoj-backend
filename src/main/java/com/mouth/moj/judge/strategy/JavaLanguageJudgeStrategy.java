@@ -3,11 +3,12 @@ package com.mouth.moj.judge.strategy;
 import cn.hutool.json.JSONUtil;
 import com.mouth.moj.model.dto.question.JudgeCase;
 import com.mouth.moj.model.dto.question.JudgeConfig;
-import com.mouth.moj.model.dto.questionsubmit.JudgeInfo;
+import com.mouth.moj.judge.codesandbox.model.JudgeInfo;
 import com.mouth.moj.model.entity.Question;
 import com.mouth.moj.model.enums.JudgeInfoMessageEnum;
 
 import java.util.List;
+import java.util.Optional;
 
 /**
  * @ClassName DefaultJudgeStrategy
@@ -24,8 +25,8 @@ public class JavaLanguageJudgeStrategy implements JudgeStrategy{
     @Override
     public JudgeInfo doJudge(JudgeContext judgeContext) {
         JudgeInfo judgeInfo = judgeContext.getJudgeInfo();
-        Long memory = judgeInfo.getMemory();
-        Long time = judgeInfo.getTime();
+        Long memory = Optional.ofNullable(judgeInfo.getMemory()).orElse(0L);
+        Long time = Optional.ofNullable(judgeInfo.getTime()).orElse(0L);
         List<String> inputList = judgeContext.getInputList();
         List<String> outputList = judgeContext.getOutputList();
         Question question = judgeContext.getQuestion();
@@ -51,7 +52,7 @@ public class JavaLanguageJudgeStrategy implements JudgeStrategy{
                 return judgeInfoResponse;
             }
         }
-
+        //判断题目配置
         String judgeConfigStr = question.getJudgeConfig();
         JudgeConfig judgeConfig = JSONUtil.toBean(judgeConfigStr, JudgeConfig.class);
         Long needmemoryLimit = judgeConfig.getMemoryLimit();
